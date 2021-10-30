@@ -5,9 +5,9 @@ import android.widget.Spinner;
 public class Trabajador {
 
     private String nombre;
-    private Integer salario;
-    private Integer tiempoTrabajado;
-    private Spinner mes;
+    private Double salario;
+    private Double tiempoTrabajado;
+    private String mes;
 
     public Trabajador() {
         this.nombre = nombre;
@@ -24,27 +24,27 @@ public class Trabajador {
         this.nombre = nombre;
     }
 
-    public Integer getSalario() {
+    public Double getSalario() {
         return salario;
     }
 
-    public void setSalario(Integer salario) {
+    public void setSalario(Double salario) {
         this.salario = salario;
     }
 
-    public Integer getTiempoTrabajado() {
+    public Double getTiempoTrabajado() {
         return tiempoTrabajado;
     }
 
-    public void setTiempoTrabajado(Integer tiempoTrabajado) {
+    public void setTiempoTrabajado(Double tiempoTrabajado) {
         this.tiempoTrabajado = tiempoTrabajado;
     }
 
-    public Spinner getMes() {
+    public String getMes() {
         return mes;
     }
 
-    public void setMes(Spinner mes) {
+    public void setMes(String mes) {
         this.mes = mes;
     }
 }

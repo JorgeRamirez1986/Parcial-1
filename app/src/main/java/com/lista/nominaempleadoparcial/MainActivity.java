@@ -2,6 +2,7 @@ package com.lista.nominaempleadoparcial;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Adapter;
@@ -10,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.lista.nominaempleadoparcial.Modelo.Trabajador;
 
@@ -20,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     private Button calcularSalario;
+    private Button verSueldo;
     private EditText nombreTrabajador;
     private EditText salarioTrabajador;
     private EditText tiempoLaborado;
@@ -27,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Spinner mes;
     private ArrayAdapter adapter;
     private ArrayList<String> meses = new ArrayList<>();
-    private LinkedList<Trabajador> trabajadores;
+    private ArrayList<Trabajador> trabajadores;
 
 
 
@@ -38,9 +41,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         nombreTrabajador = findViewById(R.id.nombreTrabajador);
         salarioTrabajador = findViewById(R.id.salarioTrabajador);
-        trabajadores = new LinkedList<>();
+        trabajadores = new ArrayList<>();
         tiempoLaborado = findViewById(R.id.tiempoLaborado);
-        mes = (Spinner) findViewById(R.id.listadoMes);
+        mes = findViewById(R.id.listadoMes);
         calcularSalario = findViewById(R.id.btnCalcularSueldo);
         calcularSalario.setOnClickListener(this);
 
@@ -82,12 +85,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                case R.id.btnCalcularSueldo:
                    Trabajador trabajador = new Trabajador();
                    trabajador.setNombre(nombreTrabajador.getText().toString());
-                   trabajador.setSalario(Integer.valueOf(salarioTrabajador.getText().toString()));
-                   trabajador.setTiempoTrabajado(Integer.valueOf(tiempoLaborado.getText().toString()));
-                   trabajador.setMes(mes);
+                   trabajador.setSalario(Double.valueOf(salarioTrabajador.getText().toString()));
+                   trabajador.setTiempoTrabajado(Double.valueOf(tiempoLaborado.getText().toString()));
+                   trabajador.setMes((String)mes.getSelectedItem());
+                   trabajadores.add(trabajador);
+                   /*Toast.makeText(this, "el Nombre del Trabajador es" + nombreTrabajador.getText().toString() + salarioTrabajador.getText().toString()
+                           + tiempoLaborado.getText().toString() + mes.getSelectedItem(), Toast.LENGTH_LONG).show();
+                   */
+                   Bundle extra = new Bundle();
+                   extra.putSerializable("lista", trabajadores);
+                   Intent intent  = new Intent(MainActivity.this, CalcularSueldo.class);
+                   intent.putExtra("extra", extra);
+                   startActivity(intent);
+                   break;
+
 
 
            }
+    }
+
+
+    private void clearForm() {
+        nombreTrabajador.getText().clear();
+        salarioTrabajador.getText().clear();
+        tiempoLaborado.getText().clear();
     }
 
 
