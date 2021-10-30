@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
 
 
-    } // Final De La Creacion
+    }
 
     @Override
     public void onClick(View view) {
@@ -89,9 +89,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                    trabajador.setTiempoTrabajado(Double.valueOf(tiempoLaborado.getText().toString()));
                    trabajador.setMes((String)mes.getSelectedItem());
                    trabajadores.add(trabajador);
-                   /*Toast.makeText(this, "el Nombre del Trabajador es" + nombreTrabajador.getText().toString() + salarioTrabajador.getText().toString()
-                           + tiempoLaborado.getText().toString() + mes.getSelectedItem(), Toast.LENGTH_LONG).show();
-                   */
+
                    Bundle extra = new Bundle();
                    extra.putSerializable("lista", trabajadores);
                    Intent intent  = new Intent(MainActivity.this, CalcularSueldo.class);

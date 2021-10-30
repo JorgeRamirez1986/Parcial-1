@@ -19,10 +19,10 @@ public class MostrarSueldo extends AppCompatActivity implements View.OnClickList
         private EditText nombreTrabajador;
         private EditText sueldoTrabajador;
         private EditText cantDiasLaborados;
-        private Spinner mes;
+        private Spinner mesSpinner;
         private ArrayList<String> meses = new ArrayList<>();
         private ArrayAdapter adapter;
-        public  Double diasAnno = 360.0;
+        public  Double diasYear = 360.0;
         public  Double auxTransport = 106454.0;
         public  Double salarioMin = 908526.0;
 
@@ -43,7 +43,7 @@ public class MostrarSueldo extends AppCompatActivity implements View.OnClickList
             nombreTrabajador = findViewById(R.id.nombreTrabajador);
             cantDiasLaborados = findViewById(R.id.diasLaborados);
             sueldoTrabajador = findViewById(R.id.sueldoTrabajador);
-            mes = (Spinner) findViewById(R.id.listadoMes);
+            mesSpinner = (Spinner) findViewById(R.id.listadoMes);
 
 
             calcularSalario = findViewById(R.id.btnCalcular);
@@ -75,11 +75,11 @@ public class MostrarSueldo extends AppCompatActivity implements View.OnClickList
             meses.add("Noviembre");
             meses.add("Diciembre");
             adapter = new ArrayAdapter(MostrarSueldo.this, android.R.layout.simple_spinner_dropdown_item, meses);
-            mes.setAdapter(adapter);
-            mes.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            mesSpinner.setAdapter(adapter);
+            mesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                    String mesSeleccionado = (String) mes.getAdapter().getItem(i);
+                    String mesSeleccionado = (String) mesSpinner.getAdapter().getItem(i);
                 }
 
                 @Override
